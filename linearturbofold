@@ -1,0 +1,56 @@
+#!/usr/bin/env python2
+
+from genericpath import exists
+import gflags as flags
+import subprocess
+import sys
+import os
+
+FLAGS = flags.FLAGS
+
+def setgflags():
+    flags.DEFINE_string("input", "", "input file must in the fasta format", short_name='i')
+    flags.DEFINE_string("outDir", "", "output directory for predicted MSA and structures", short_name='o')
+    flags.DEFINE_integer("iter", 3, "set the number of iteration, (DEFAULT=3)", short_name='it')
+    flags.DEFINE_integer("hmmBeam", 100, "set beam size for LinearAlignment, (DEFAULT=100)", short_name='b1')
+    flags.DEFINE_integer("ckyBeam", 100, "set beam size for LinearPartition, (DEFAULT=100)", short_name='b2')
+    flags.DEFINE_boolean("saveBFs", False, "save Partition Function after the last iteraction, (DEFAULT=False)", short_name='pf')
+    flags.DEFINE_boolean("saveBPPs", False, "save base pair probabilities after the last iteraction, (DEFAULT=False)", short_name='bpp')
+    flags.DEFINE_boolean("verbose", False, "print more alignment, folding and runtime information, (DEFAULT=FALSE)", short_name='v')
+    flags.DEFINE_integer("TnMinHelixLength", 3, "set the min. length of helix in predicted structures in ThreshKnot, (DEFAULT=3)", short_name='tkhl')
+    flags.DEFINE_integer("TnIterations", 1, "set the number of iteration of ThreshKnot, (DEFAULT=1)", short_name='tkit')
+    flags.DEFINE_float("Threshold", 0.3, "set Threshold for ThreshKnot, (DEFAULT=0.3)", short_name='th')
+   
+    argv = FLAGS(sys.argv)
+
+def main():
+    input_file = FLAGS.input
+    output_dir = FLAGS.outDir
+    iteration = str(FLAGS.iter)
+    hmm_beam = str(FLAGS.hmmBeam)
+    cky_beam = str(FLAGS.ckyBeam)
+    is_save_pfs = "1" if FLAGS.saveBFs else "0"
+    is_save_bpps = "1" if FLAGS.saveBPPs else "0"
+    is_verbose = "1" if FLAGS.verbose else "0"
+    TkMinHelixLength = str(FLAGS.TnMinHelixLength)
+    TkIterations = str(FLAGS.TnIterations)
+    Threshold = str(FLAGS.Threshold)
+
+    if not input_file: 
+        print("Do not provide the input file (should in the fasta format).")
+        exit()
+    
+    if not os.path.exists(output_dir):
+        print("The output directory does not exist.")
+        exit()
+
+    if iteration < 0:
+        print("Invalid TurboFold iterations given.")
+
+    path = os.path.dirname(os.path.abspath(__file__))
+    cmd = ["%s/%s" % (path, 'bin/linearturbofold'), input_file, output_dir, hmm_beam, cky_beam, iteration, is_save_bpps, is_save_pfs, is_verbose, TkMinHelixLength, TkIterations, Threshold]
+    subprocess.call(cmd)
+    
+if __name__ == '__main__':
+    setgflags()
+    main()
