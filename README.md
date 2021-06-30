@@ -47,12 +47,12 @@ Set ThreshKnot minimum helix length (default 3). <br>
 
 ### Example
 ```
-./linearturbofold -i input.fasta -o rets/ --pf --bpp
+./linearturbofold -i input.fasta -o results/ --pf --bpp
 100% [==================================================]
 3 iterations Done!
 Outputing partition functions to files ...
 Outputing base pair probabilities to files ...
-Outputing multiple sequence alignment to rets/output.aln...
+Outputing multiple sequence alignment to results/output.aln...
 Outputing structures to files ...
 ```
 
@@ -62,6 +62,6 @@ We used the [RNAStralign](https://rna.urmc.rochester.edu/publications.html) data
 # SARS-CoV-2 Dataset and Results
 The 25 SARS-CoV-2 and SARS-related genomes analyzed in the paper are listed in [samples25.fasta](data/sars-cov-2_data/samples25.fasta). <br>
 For further study by experts, 
-we provide the whole multiple sequence alignment and predicted structures for all genomes from LinearTurboFold in [sars-cov-2_and_sars-related_25_genomes_msa_structures.txt](sars-cov-2_rets/sars-cov-2_and_sars-related_25_genomes_msa_structures.txt). <br>
+we provide the whole multiple sequence alignment and predicted structures for all genomes from LinearTurboFold in [sars-cov-2_and_sars-related_25_genomes_msa_structures.txt](sars-cov-2_results/sars-cov-2_and_sars-related_25_genomes_msa_structures.txt). <br>
 Each genome corresponds to three lines: sequence name, aligned sequence and aligned structure, respectively. 
 
