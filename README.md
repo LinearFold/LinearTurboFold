@@ -6,7 +6,7 @@ This repository contains the C++ source code for the LinearTurboFold project, an
 
 Sizhen Li, He Zhang, Liang Zhang, Kaibo Liu, Boxiang Liu, David Mathews*, Liang Huang*
 
-\* corresponding author
+\* corresponding authors
 
 # Dependency
 gcc 4.8.5 or above; <br>
