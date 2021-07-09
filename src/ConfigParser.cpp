@@ -1,8 +1,5 @@
 #include "ConfigParser.h"
 #include <cmath>
-#include <filesystem>
-
-namespace fs = std::__fs::filesystem;
 
 ConfigParser::ConfigParser() {
 
@@ -64,7 +61,6 @@ void ConfigParser::ParseConfig(int argc, char** argv){
     const unsigned int sequenceCount = fasta_sequences->size(); // from here on, the size of outputCtFiles, outputPfsFiles, etc must match the size of the sequenceFiles vector.
     sequenceFiles.resize(sequenceCount); // (used to determine sequenceCount)
 
-    fs::path dir(outputDir);
     outputCtFiles.resize(sequenceCount); 
     if (saveBpps) outputBppFiles.resize(sequenceCount);
     if (savePfs) outputPfsFiles.resize(sequenceCount);
@@ -77,21 +73,18 @@ void ConfigParser::ParseConfig(int argc, char** argv){
         // replace invalid file-name characters. Truncate the name if it is too long, and append the .ct extension.
         
         tmpFileName = createSafeFilename(name, ".ct", true);
-        fs::path file(tmpFileName);
-        outputCtFiles[i] = dir / file;
+        outputCtFiles[i] = outputDir + "/" + tmpFileName;
         
         if (saveBpps) {
             tmpFileName = createSafeFilename(name, ".bpp", true);
-            fs::path file(tmpFileName);
-            outputBppFiles[i] = dir / file;
+            outputBppFiles[i] = outputDir + "/" + tmpFileName;
         }
         
         if (savePfs) {
             tmpFileName = createSafeFilename(name, ".pfs", true);
-            fs::path file(tmpFileName);
-            outputPfsFiles[i] = dir / file;
+            outputPfsFiles[i] = outputDir + "/" + tmpFileName;
         }
     }
-    fs::path file("output.aln");
-    OutAln = dir / file; 
+
+    OutAln = outputDir + "/" + "output.aln";
 }
