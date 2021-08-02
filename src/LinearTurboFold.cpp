@@ -21,6 +21,16 @@ double LinearTurboFold::get_folding_extrinsic_information(int i_seq1, int j, int
     double seq1_seq2_mapping_probability;
     double extrinsic_info = 0.0f;
 
+    double norm = 0.0;
+    for (unsigned int i_seq2 = 0; i_seq2 < sequences.size(); i_seq2++){
+        if (i_seq2 == i_seq1) continue;
+
+        if (i_seq1 < i_seq2) seq1_seq2_seq_similarity_weight = (1.0f - similarities[i_seq1][i_seq2]);
+        else seq1_seq2_seq_similarity_weight = (1.0f - similarities[i_seq2][i_seq1]);
+
+        norm += 2 * seq1_seq2_seq_similarity_weight;
+    }
+
     for (unsigned int i_seq2 = 0; i_seq2 < sequences.size(); i_seq2++){
         if (i_seq2 == i_seq1) continue;
         SeqFold* RNA2 = folds[i_seq2];
@@ -43,7 +53,7 @@ double LinearTurboFold::get_folding_extrinsic_information(int i_seq1, int j, int
         } 
     }
 
-    return TO_XLOG(extrinsic_info);
+    return TO_XLOG(extrinsic_info / norm);
 }
 
 LinearTurboFold::LinearTurboFold(vector<t_structure*> *fasta_sequences, int ckyBeam, int hmmBeam, bool verbose){
@@ -100,7 +110,7 @@ void LinearTurboFold::run_iterations(ConfigParser config){
         }
         
         // pairwise alignments
-        run_phmm_alignment(i_iter); 
+        if (i_iter > 0) run_phmm_alignment(i_iter); 
         // each sequence folding
         refoldSequences(i_iter, config.saveBpps, config.savePfs, &config.outputPfsFiles, &config.outputBppFiles);
 

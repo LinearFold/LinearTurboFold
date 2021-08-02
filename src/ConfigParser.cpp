@@ -10,7 +10,8 @@ ConfigParser::ConfigParser() {
 	turboIterations = 3;
 
 	// Initialize the default alignment output max column number.
-	ColumnNumber = 60;
+	AlnFormat = "Fasta";
+        ColumnNumber = 60;
 
 	// Initialize ThreshKnot mode parameters.
 		// Initialize the number of ProbKnot iterations.
