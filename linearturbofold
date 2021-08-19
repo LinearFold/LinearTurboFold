@@ -41,9 +41,8 @@ def main():
         exit()
     
     if not os.path.exists(output_dir):
-        print("The output directory does not exist.")
-        exit()
-
+       os.mkdir(output_dir)
+ 
     if iteration < 0:
         print("Invalid TurboFold iterations given.")
 
