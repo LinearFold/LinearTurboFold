@@ -2,7 +2,7 @@
 
 from genericpath import exists
 import gflags as flags
-import subprocess
+#import subprocess
 import sys
 import os
 
@@ -47,8 +47,12 @@ def main():
         print("Invalid TurboFold iterations given.")
 
     path = os.path.dirname(os.path.abspath(__file__))
-    cmd = ["%s/%s" % (path, 'bin/linearturbofold'), input_file, output_dir, hmm_beam, cky_beam, iteration, is_save_bpps, is_save_pfs, is_verbose, TkMinHelixLength, TkIterations, Threshold]
-    subprocess.call(cmd)
+    input_file = os.path.abspath(input_file)
+    output_dir = os.path.abspath(output_dir)
+    cmd = ["cd %s; %s/%s" % (path, path, 'bin/linearturbofold'), input_file, output_dir, hmm_beam, cky_beam, iteration, is_save_bpps, is_save_pfs, is_verbose, TkMinHelixLength, TkIterations, Threshold]
+    cmd=' '.join(cmd)
+    os.system(cmd)
+    #subprocess.call(cmd)
     
 if __name__ == '__main__':
     setgflags()
