@@ -265,7 +265,7 @@ vector<t_structure*>* t_structure::read_multi_seq(const char* const multi_seq_fp
 						cur_line[i_cpy] != '\n' &&
 						cur_line[i_cpy] != '\t')
 					{
-						cur_nucs->push_back(cur_line[i_cpy]);
+						cur_nucs->push_back(toupper(cur_line[i_cpy]));
 					}
 				} // Copy the nucleotides.
 			} // label/nuc data check.
