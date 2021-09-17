@@ -32,7 +32,7 @@ class ConfigParser {
         int pkIterations;
         int maxStructures;
         int minHelixLength;
-        vector<string> sequenceFiles, outputCtFiles, outputPfsFiles, shapeFiles, outputBppFiles;
+        vector<string> sequenceFiles, outputCtFiles, outputDotFiles, outputPfsFiles, shapeFiles, outputBppFiles;
         vector<t_structure*> *fasta_sequences;
 
         ConfigParser();

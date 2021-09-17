@@ -169,6 +169,9 @@ void LinearTurboFold::run_iterations(ConfigParser config){
         int ret = folds[i_seq-1]->ProbKnot(config.pkIterations, config.minHelixLength, config.threshold);  // TODO: parameters
         // printf("Outputing structures to %s\n", config.outputCtFiles[i_seq-1].c_str());
         int writeError = WriteCt(i_seq-1, config.outputCtFiles[i_seq-1].c_str());
+
+        // ct2dot
+        folds[i_seq-1]->GetStructure()->writedotbracket(config.outputDotFiles[i_seq-1].c_str());
     }
 
     return;

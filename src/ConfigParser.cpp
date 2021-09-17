@@ -63,6 +63,7 @@ void ConfigParser::ParseConfig(int argc, char** argv){
     sequenceFiles.resize(sequenceCount); // (used to determine sequenceCount)
 
     outputCtFiles.resize(sequenceCount); 
+    outputDotFiles.resize(sequenceCount);
     if (saveBpps) outputBppFiles.resize(sequenceCount);
     if (savePfs) outputPfsFiles.resize(sequenceCount);
     const int num_width = log10(sequenceCount) + 1; // width of formatted sequence number (for auto-generated names).
@@ -75,6 +76,9 @@ void ConfigParser::ParseConfig(int argc, char** argv){
         
         tmpFileName = createSafeFilename(name, ".ct", true);
         outputCtFiles[i] = outputDir + "/" + tmpFileName;
+
+        tmpFileName = createSafeFilename(name, ".db", true);
+        outputDotFiles[i] = outputDir + "/" + tmpFileName;
         
         if (saveBpps) {
             tmpFileName = createSafeFilename(name, ".bpp", true);
