@@ -2,7 +2,9 @@
 
 This repository contains the C++ source code for the LinearTurboFold project, an end-to-end linear-time algorithm for structural alignment and conserved structure prediction of RNA homologs, which is the first joint-fold-and-align algorithm to scale to full-length SARS-CoV-2 genomes without imposing any constraints on base-pairing distance.
 
-[LinearTurboFold: Fast Folding and Alignment for RNA Homologs with Applications to Coronavirus](https://www.biorxiv.org/content/10.1101/2020.11.23.393488v2)
+[LinearTurboFold: Linear-time global prediction of conserved structures for RNA homologs with applications to SARS-CoV-2](https://www.pnas.org/content/118/52/e2116269118)
+
+_Proceedings of the National Academy of Sciences_, November 2021.
 
 Sizhen Li, He Zhang, Liang Zhang, Kaibo Liu, Boxiang Liu, David Mathews*, Liang Huang*
 
