@@ -243,7 +243,7 @@ vector<t_structure*>* t_structure::read_multi_seq(const char* const multi_seq_fp
 				}
 
 				// Read the label from the next line.
-				fgets(cur_label, MAX_HEADER_LENGTH, f_multi_seq);
+				char* fgets_ret = fgets(cur_label, MAX_HEADER_LENGTH, f_multi_seq);
 				if(cur_label[strlen(cur_label)-1] == '\n')
 				{
 					cur_label[strlen(cur_label)-1] = 0;
@@ -612,10 +612,10 @@ void t_structure::openct(const char* ct_fp)
 	this->ctlabel = (char*)malloc(sizeof(char) * MAX_HEADER_LENGTH);
 
 	// Read first line
-	fscanf(ct_file, "%d", &this->numofbases);
+	int fscanf_ret = fscanf(ct_file, "%d", &this->numofbases);
 
 	// Read remaining of the line, contains new line character at the end of label.
-	fgets(this->ctlabel, MAX_HEADER_LENGTH, ct_file); // Read remaining of the line.
+	char* fgets_ret = fgets(this->ctlabel, MAX_HEADER_LENGTH, ct_file); // Read remaining of the line.
 	if(this->ctlabel[strlen(this->ctlabel) - 1] == '\n')
 	{
 		this->ctlabel[strlen(this->ctlabel) - 1] = 0;
@@ -654,7 +654,7 @@ void t_structure::openct(const char* ct_fp)
 		char raw_nuc;
 
 		//                1  G 0  2  120 1
-		fscanf(ct_file, "%d %c %d %d %d %d", &index, &raw_nuc, &dangles[i], &stacks[i], &this->basepr[i], &some_val1);
+		int fscanf_ret = fscanf(ct_file, "%d %c %d %d %d %d", &index, &raw_nuc, &dangles[i], &stacks[i], &this->basepr[i], &some_val1);
 
 		//if(this->nucs[i] == 'a' ||
 		//	this->nucs[i] == 'c' ||
@@ -846,10 +846,10 @@ void t_structure::openseq(const char* seq_fp)
 	this->unpaired_forced = NULL;
 
 	char line_buffer[MAX_HEADER_LENGTH];
-	fgets(line_buffer, MAX_HEADER_LENGTH, seq_file);
+	char* fgets_ret = fgets(line_buffer, MAX_HEADER_LENGTH, seq_file);
 	while(line_buffer[0] == ';')
 	{
-		fgets(line_buffer, MAX_HEADER_LENGTH, seq_file);
+		char* fgets_ret = fgets(line_buffer, MAX_HEADER_LENGTH, seq_file);
 	}
 
 	// Read label, contains new line character at the end of label.
@@ -900,10 +900,10 @@ void t_structure::openseq(const char* seq_fp)
 	fseek(seq_file, 0, SEEK_SET);
 
 	// Read all information again before sequence data.
-	fgets(line_buffer, MAX_HEADER_LENGTH, seq_file);
+	fgets_ret = fgets(line_buffer, MAX_HEADER_LENGTH, seq_file);
 	while(line_buffer[0] == ';')
 	{
-		fgets(line_buffer, MAX_HEADER_LENGTH, seq_file);
+		fgets_ret = fgets(line_buffer, MAX_HEADER_LENGTH, seq_file);
 	}
 
 	this->nucs[0] = '#';
@@ -972,7 +972,7 @@ void t_structure::openfasta(const char* fasta_fp)
 	this->stackings_on_mb_closure = NULL;
 
 	char line_buffer[MAX_HEADER_LENGTH];
-	fgets(line_buffer, MAX_HEADER_LENGTH, fasta_file);
+        char* fgets_ret = fgets(line_buffer, MAX_HEADER_LENGTH, fasta_file);
 	if(line_buffer[0] == '>')
 	{
 		// Copy label.
@@ -1023,7 +1023,7 @@ void t_structure::openfasta(const char* fasta_fp)
 	fseek(fasta_file, 0, SEEK_SET);
 
 	// Read captoin information.
-	fgets(line_buffer, MAX_HEADER_LENGTH, fasta_file);
+	fgets_ret = fgets(line_buffer, MAX_HEADER_LENGTH, fasta_file);
 
 	int i = 1; // Sequence index, starts from 1.
 
@@ -1085,7 +1085,7 @@ bool t_structure::verify_seq(const char* seq_fp)
 
 	char line_buffer[MAX_HEADER_LENGTH];
 
-	_fgets(line_buffer, MAX_HEADER_LENGTH, f_seq);
+	char* fgets_ret = _fgets(line_buffer, MAX_HEADER_LENGTH, f_seq);
 
 	// If the first character of first line is not semicolon, 
 	// this is not a valid sequence file.

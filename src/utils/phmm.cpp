@@ -50,7 +50,7 @@ t_phmm::t_phmm(const char* phmm_pars_file)
 	// Load all parameters from file.
 	for(int cnt = 0; cnt < N_BINZ * (N_STATES + N_OUTPUTS) * N_STATES; cnt++)
 	{
-		fscanf(fam_par_file, "%lf", &fam_hmm_pars[cnt]);
+		int fscanf_ret = fscanf(fam_par_file, "%lf", &fam_hmm_pars[cnt]);
 		//printf("%d: %.3f\n", cnt, fam_hmm_pars[cnt]);
 	}
 
@@ -58,7 +58,7 @@ t_phmm::t_phmm(const char* phmm_pars_file)
 	// Read thresholds.
 	for(int cnt = 0; cnt < N_BINZ; cnt++)
 	{
-		fscanf(fam_par_file, "%lf", &fam_thresholds[cnt]);
+		int fscanf_ret = fscanf(fam_par_file, "%lf", &fam_thresholds[cnt]);
 		//printf("%d: %f\n", cnt, fam_thresholds[cnt]);
 	}
 
