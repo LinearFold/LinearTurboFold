@@ -12,7 +12,7 @@ def setgflags():
     flags.DEFINE_string("input", "", "input file must in the fasta format", short_name='i')
     flags.DEFINE_string("outDir", "", "output directory for predicted MSA and structures", short_name='o')
     flags.DEFINE_integer("iter", 3, "set the number of iteration, (DEFAULT=3)", short_name='it')
-    flags.DEFINE_integer("hmmBeam", -1, "set beam size for LinearAlignment, (DEFAULT=-1, infinite beam size)", short_name='b1')
+    flags.DEFINE_integer("hmmBeam", 100, "set beam size for LinearAlignment, (DEFAULT=-1, infinite beam size)", short_name='b1')
     flags.DEFINE_integer("ckyBeam", 100, "set beam size for LinearPartition, (DEFAULT=100)", short_name='b2')
     flags.DEFINE_boolean("saveBFs", False, "save Partition Function after the last iteraction, (DEFAULT=False)", short_name='pf')
     flags.DEFINE_boolean("saveBPPs", False, "save base pair probabilities after the last iteraction, (DEFAULT=False)", short_name='bpp')
