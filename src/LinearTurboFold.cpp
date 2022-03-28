@@ -53,7 +53,7 @@ double LinearTurboFold::get_folding_extrinsic_information(int i_seq1, int j, int
         } 
     }
 
-    return TO_XLOG(extrinsic_info / norm);
+    return TO_XLOG(extrinsic_info) // / norm);
 }
 
 LinearTurboFold::LinearTurboFold(vector<t_structure*> *fasta_sequences, int ckyBeam, int hmmBeam, bool verbose){
