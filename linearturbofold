@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 
 from genericpath import exists
 import gflags as flags
@@ -26,7 +26,7 @@ def setgflags():
 def main():
     input_file = FLAGS.input
     output_dir = FLAGS.outDir
-    iteration = str(FLAGS.iter)
+    iteration = FLAGS.iter
     hmm_beam = str(FLAGS.hmmBeam)
     cky_beam = str(FLAGS.ckyBeam)
     is_save_pfs = "1" if FLAGS.saveBFs else "0"
@@ -49,7 +49,7 @@ def main():
     path = os.path.dirname(os.path.abspath(__file__))
     input_file = os.path.abspath(input_file)
     output_dir = os.path.abspath(output_dir)
-    cmd = ["cd %s; %s/%s" % (path, path, 'bin/linearturbofold'), input_file, output_dir, hmm_beam, cky_beam, iteration, is_save_bpps, is_save_pfs, is_verbose, TkMinHelixLength, TkIterations, Threshold]
+    cmd = ["cd %s; %s/%s" % (path, path, 'bin/linearturbofold'), input_file, output_dir, hmm_beam, cky_beam, str(iteration), is_save_bpps, is_save_pfs, is_verbose, TkMinHelixLength, TkIterations, Threshold]
     cmd=' '.join(cmd)
     os.system(cmd)
     #subprocess.call(cmd)
