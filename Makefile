@@ -6,13 +6,7 @@
 ################################
 
 CC=g++
-# DEPS=LinearPartitionDouble.h doublebp.cpp energy_parameter.h feature_weight.h intl11.h intl21.h intl22.h utility_v.h utility.h LinearFoldEval.cpp
-# DEPS=newbpLog.cpp LinearPartitionLog.h energy_parameter.h feature_weight.h intl11.h intl21.h intl22.h utility_v.h utility.h LinearFoldEval.cpp
-# DEPS=LinearPartitionNewprune-C.h energy_parameter.h feature_weight.h intl11.h intl21.h intl22.h utility_v.h utility.h LinearFoldEval.cpp newbp-C.cpp
-# DEPS=LinearPartitionNewprune.h energy_parameter.h feature_weight.h intl11.h intl21.h intl22.h utility_v.h utility.h LinearFoldEval.cpp
-# DEPS=newbpLog_pf_type.cpp LinearPartitionLog_pf_type.h energy_parameter.h feature_weight.h intl11.h intl21.h intl22.h utility_v.h utility.h LinearFoldEval.cpp
-# DEPS= LinearSampling.h energy_parameter.h feature_weight.h intl11.h intl21.h intl22.h utility_v.h utility.h 
-DEPS=src/LinearTurboFold.h src/SeqFold.h src/LinearPartition/src/LinearPartition.h src/LinearAlignment/src/LinearAlign.h src/probknot.h \
+DEPS=src/LinearTurboFold.h src/SeqFold.h src/LinearPartition/src/LinearPartition.h src/LinearPartition/src/bpp.h src/LinearAlignment/src/LinearAlign.h src/probknot.h \
 src/ConfigParser.h src/utils/common_utils.h src/utils/defines.h src/utils/structure_object.h \
 src/utils/ansi_string.h src/utils/utils.h src/utils/TProgressDialog.h src/utils/MultiSequence.h src/utils/SafeVector.h src/utils/Sequence.h \
 src/utils/structure.h src/utils/rna_library.h \

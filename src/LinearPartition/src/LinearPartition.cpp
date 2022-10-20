@@ -24,7 +24,7 @@
 #include "LinearPartition.h"
 #include "Utils/utility.h"
 #include "Utils/utility_v.h"
-#include "bpp.cpp"
+#include "bpp.h"
 #include "../../SeqFold.h"
 #include "../../utils/pfunction_math.h"
 #include "../../utils/math/xlog_math.h"

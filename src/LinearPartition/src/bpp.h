@@ -1,5 +1,5 @@
 /*
- *bpp.cpp*
+ *bpp.h*
  The main code for base pair probability calculation.
 
  author: He Zhang
